@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Button on Hover and Tap</title>
+</head>
+<body>
+
+    <div class="msg">
+        <h2>Wanna meet on 19th October, Saturday?</h2>
+        <p style="display: none;" id="p">If you can tap "No," kindly take a screenshot and send it to me! :P</p>
+        <div class="container">
+            <button id="movingButton">No!</button>
+            <button id="yes">Yes</button>
+        </div>
+    </div>
+    
+    <div class="ifyes"  >
+        <h1 style="color: red;">Thank You!</h1>
+        <p style="font-size: 2.3rem; text-align: center;">I know you are excited to meet me! We will meet after your exam at sharp 4:00 PM! See you...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<style>
+    body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0; /* Remove default margin */
+}
+
+h2, p {
+    padding: 0 4px;
+    margin: 0 4px 10px 0;
+}
+
+.ifyes {
+    position: relative; /* Set position relative to allow absolute positioning of the pseudo-element */
+    background-image: url('/shy.webp');
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensures the image covers the entire div */
+    height: 500px;
+    overflow: hidden; /* Prevents the pseudo-element from overflowing the parent */
+    color: rgb(0, 0, 0); /* Adjust text color as needed */
+    z-index: 1; /* Ensure text is above the pseudo-element */
+}
+
+.ifyes::before {
+    content: ""; /* Required for the pseudo-element */
+    position: absolute; /* Position it absolutely within the parent */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5); /* White overlay with 50% opacity */
+    pointer-events: none; /* Prevents the overlay from interfering with any interactions */
+    z-index: -1; /* Place it behind the text */
+}
+
+
+.msg, .ifyes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%; /* Use percentage for responsiveness */
+    max-width: 600px; /* Limit max width */
+    margin: auto; /* Center align */
+}
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%; /* Set to 100% for responsiveness */
+    height: 60vh;
+}
+
+#movingButton, #yes {
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100px; /* Set width to a larger value for better click area */
+    height: 40px;
+    transition: all 0.3s ease; /* Smooth transition */
+    margin-right: 20px; /* Reduce margin for responsiveness */
+}
+
+.ifyes {
+    display: none; /* Initially hidden */
+}
+
+</style>
